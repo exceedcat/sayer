@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List, { ListItem } from 'material-ui/List';
 import Badge from 'material-ui/Badge';
+import LinesEllipsis from 'react-lines-ellipsis';
 
 const styles = {
   item: {
@@ -9,6 +10,13 @@ const styles = {
   },
   badge: {
     margin: '0 10px',
+  },
+  flex: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  text: {
+    fontFamily: 'Roboto, arial',
   },
 };
 
@@ -26,8 +34,15 @@ class Item extends Component {
     const { classes } = this.props;
     return (
       <List component="nav" className={classes.item}>
-        <ListItem button>
-          <ListItemText primary={this.state.text} />
+        <ListItem button className={classes.flex}>
+          <LinesEllipsis
+            text={this.state.text}
+            maxLine="1"
+            ellipsis="..."
+            trimRight
+            basedOn="letters"
+            className={classes.text}
+          />
           {this.state.comments > 0 &&
             <Badge className={classes.badge} badgeContent={this.state.comments} color="primary" />}
         </ListItem>
