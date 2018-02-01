@@ -11,6 +11,7 @@ const ItemsList = props => (
           comments={item.comments}
           isDeleting={item.isDeleting}
           key={item.id}
+          handleDelete={() => props.handleDelete(item.id)}
         />))
       }
     </List>
