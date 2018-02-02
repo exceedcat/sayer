@@ -1,9 +1,23 @@
 import React from 'react';
 import List from 'material-ui/List';
+import Button from 'material-ui/Button';
+import AddIcon from 'material-ui-icons/Add';
+import { withStyles } from 'material-ui/styles/index';
+import { Link } from 'react-router-dom';
 import Item from './item';
 
+const styles = {
+  add: {
+    margin: '0 auto',
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+};
+
 const ItemsList = props => (
-  <div>
+  <div className={props.classes.container}>
     <List component="nav">
       {props.items.map(item => (
         <Item
@@ -15,7 +29,12 @@ const ItemsList = props => (
         />))
       }
     </List>
+    <Link to="/new" className={props.classes.add}>
+      <Button fab color="secondary" aria-label="add">
+        <AddIcon />
+      </Button>
+    </Link>
   </div>
 );
 
-export default ItemsList;
+export default withStyles(styles)(ItemsList);

@@ -17,14 +17,15 @@ class App extends Component {
   }
 
   handleDelete = id => {
-    this.setState({
+    let newState = {
       items: this.state.items.filter(item => item.id !== id),
-    });
-    this.save();
+    };
+    this.setState(newState);
+    this.save(newState.items);
   };
 
-  save = () => {
-    localStorage.setItem(lsKey, JSON.stringify(this.state.items));
+  save = (items) => {
+    localStorage.setItem(lsKey, JSON.stringify(items));
   };
 
   render() {
