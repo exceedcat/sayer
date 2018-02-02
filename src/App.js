@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 // import Header from './header';
 import ItemsList from './list';
+import NewForm from './new';
 
 const lsKey = 'SayerItems';
 
@@ -16,7 +17,7 @@ class App extends Component {
     };
   }
 
-  handleDelete = id => {
+  handleDelete = (id) => {
     let newState = {
       items: this.state.items.filter(item => item.id !== id),
     };
@@ -24,8 +25,18 @@ class App extends Component {
     this.save(newState.items);
   };
 
-  save = (items) => {
-    localStorage.setItem(lsKey, JSON.stringify(items));
+  save = items => localStorage.setItem(lsKey, JSON.stringify(items));
+
+  saveNew = (text) => {
+    const {items} = this.state;
+    let item = {
+      text: text,
+      comments: 0,
+      id: items[items.length-1].id + 1,
+    };
+    const newItems = [...items, item];
+    this.setState({items: newItems});
+    this.save(newItems);
   };
 
   render() {
@@ -36,6 +47,11 @@ class App extends Component {
             exact
             path="/"
             render={() => (<ItemsList items={this.state.items} handleDelete={this.handleDelete} />)}
+          />
+          <Route
+            exact
+            path="/new"
+            render={() => (<NewForm save={this.saveNew} />)}
           />
         </div>
       </Router>
