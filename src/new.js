@@ -43,10 +43,10 @@ class NewForm extends Component {
 
   render() {
     const { classes, save } = this.props;
-    const {isSubmitted, isCorrect} = this.state;
+    const { isSubmitted, isCorrect } = this.state;
     if (isSubmitted && isCorrect) {
       save(this.state.title);
-      return (<Redirect to="/" />)
+      return (<Redirect to="/" />);
     }
     return (
       <div className={classes.container}>
@@ -58,8 +58,8 @@ class NewForm extends Component {
           onChange={this.handleChange}
           error={!isCorrect}
         />
-          <Button fab mini color="primary" aria-label="add" className={classes.button} onClick={this.handleSubmit}>
-            <KeyboardArrowRightIcon/>
+          <Button fab mini color="primary" className={classes.button} onClick={this.handleSubmit}>
+            <KeyboardArrowRightIcon />
           </Button>
       </div>
     );
