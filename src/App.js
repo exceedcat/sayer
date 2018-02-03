@@ -6,6 +6,7 @@ import {
 // import Header from './header';
 import ItemsList from './list';
 import NewForm from './new';
+import CommentsPage from './comments-page';
 
 const lsKey = 'SayerItems';
 
@@ -31,7 +32,7 @@ class App extends Component {
     const {items} = this.state;
     let item = {
       text: text,
-      comments: 0,
+      comments: [],
       id: items[items.length-1].id + 1,
     };
     const newItems = [...items, item];
@@ -52,6 +53,11 @@ class App extends Component {
             exact
             path="/new"
             render={() => (<NewForm save={this.saveNew} />)}
+          />
+          <Route
+            exact
+            path="/:itemId"
+            render={() => (<CommentsPage items={this.state.items} />)}
           />
         </div>
       </Router>
