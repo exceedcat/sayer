@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
-import List, { ListItem, ListItemSecondaryAction } from 'material-ui/List';
+import { ListItem, ListItemSecondaryAction } from 'material-ui/List';
 import Badge from 'material-ui/Badge';
 import LinesEllipsis from 'react-lines-ellipsis';
 import CloseIcon from 'material-ui-icons/Close';
@@ -19,7 +19,6 @@ const styles = {
   },
   text: {
     fontFamily: 'Roboto, arial',
-    // paddingRight: '50px',
   },
   textPr50: {
     fontFamily: 'Roboto, arial',
@@ -62,12 +61,12 @@ class Item extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Link to={`/${this.state.id}`}>
-        <ListItem
-          button
-          divider
-          className={classes.flex && this.state.isDeleting ? classes.pr100 : classes.pr50}
-        >
+      <ListItem
+        button
+        divider
+        className={classes.flex && this.state.isDeleting ? classes.pr100 : classes.pr50}
+      >
+        <Link to={`/${this.state.id}`}>
           <LinesEllipsis
             text={this.state.text}
             maxLine="1"
@@ -76,10 +75,11 @@ class Item extends Component {
             basedOn="words"
             className={this.state.isDeleting ? classes.text : classes.textPr50}
           />
-          {this.state.comments > 0 && !this.state.isDeleting &&
-            <Badge className={classes.badge} badgeContent={this.state.comments} color="primary" />}
-          <ListItemSecondaryAction className={classes.secondary}>
-            {(!this.state.isDeleting &&
+        </Link>
+        {this.state.comments > 0 && !this.state.isDeleting &&
+        <Badge className={classes.badge} badgeContent={this.state.comments} color="primary" />}
+        <ListItemSecondaryAction className={classes.secondary}>
+          {(!this.state.isDeleting &&
             <IconButton>
               <CloseIcon onClick={() => this.setState({ ...this.state, isDeleting: true })} />
             </IconButton>) ||
@@ -92,9 +92,9 @@ class Item extends Component {
               Delete
             </Button>
             }
-          </ListItemSecondaryAction>
-        </ListItem>
-      </Link>
+        </ListItemSecondaryAction>
+      </ListItem>
+
     );
   }
 }
