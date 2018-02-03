@@ -4,8 +4,7 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
-// import Header from './header';
-import ItemsList from './list';
+import MainPage from './page';
 import NewForm from './new';
 import CommentsPage from './comments-page';
 
@@ -62,7 +61,7 @@ class App extends Component {
           <Route
             exact
             path="/"
-            render={() => (<ItemsList items={this.state.items} handleDelete={this.handleDelete} />)}
+            render={() => (<MainPage items={this.state.items} handleDelete={this.handleDelete} />)}
           />
           <Route
             exact
