@@ -2,15 +2,26 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import { withStyles } from 'material-ui/styles';
+import Header from './header';
 import CommentsList from './comments-list';
 import CommentsForm from './comments-form';
 
 const styles = {
   container: {
-    display: 'flex',
-    flexDirection: 'column-reverse',
-    justifyContent: 'space-between',
     height: '100vh',
+  },
+  toolbar: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    padding: '30px 20px',
+  },
+  appBar: {
+    boxShadow: 'none',
+  },
+  comments: {
+    height: 'calc(100vh - 116px - 61px)',
+    overflowY: 'scroll',
   },
 };
 
@@ -29,8 +40,11 @@ class CommentsPage extends Component {
     const { classes } = this.props;
     return (
       <div className={classes.container}>
+        <Header title={item.text} />
+        <div className={classes.comments}>
+          {comments && <CommentsList comments={comments} />}
+        </div>
         <CommentsForm save={text => this.props.save(this.state.id, text)} />
-        {comments && <CommentsList comments={comments} />}
       </div>
     );
   }
