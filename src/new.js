@@ -37,7 +37,7 @@ class NewForm extends Component {
 
   handleSubmit = () => this.setState({
         ...this.state,
-        isCorrect: !!this.state.title,
+        isCorrect: !!this.state.title.trim(),
         isSubmitted: true,
       });
 
