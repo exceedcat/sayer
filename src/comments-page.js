@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router';
 import CommentsList from './comments-list';
 
 class CommentsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: 1, // todo: get from url
+      id: +props.match.url.split('/')[1],
     };
   }
 
@@ -22,4 +23,4 @@ class CommentsPage extends Component {
   }
 }
 
-export default CommentsPage;
+export default withRouter(CommentsPage);
