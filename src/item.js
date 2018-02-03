@@ -19,10 +19,14 @@ const styles = {
   },
   text: {
     fontFamily: 'Roboto, arial',
+    color: 'rgba(0, 0, 0, 0.87)',
+    textDecoration: 'none',
   },
   textPr50: {
     fontFamily: 'Roboto, arial',
     paddingRight: '50px',
+    color: 'rgba(0, 0, 0, 0.87)',
+    textDecoration: 'none',
   },
   pr50: {
     paddingRight: '50px',
@@ -66,14 +70,13 @@ class Item extends Component {
         divider
         className={classes.flex && this.state.isDeleting ? classes.pr100 : classes.pr50}
       >
-        <Link to={`/${this.state.id}`}>
+        <Link to={`/${this.state.id}`} className={this.state.isDeleting ? classes.text : classes.textPr50}>
           <LinesEllipsis
             text={this.state.text}
             maxLine="1"
             ellipsis="..."
             trimRight
-            basedOn="words"
-            className={this.state.isDeleting ? classes.text : classes.textPr50}
+            basedOn="letters"
           />
         </Link>
         {this.state.comments > 0 && !this.state.isDeleting &&

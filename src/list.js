@@ -8,17 +8,20 @@ import Item from './item';
 
 const styles = {
   add: {
-    margin: '0 auto',
+    margin: '10px auto 0',
   },
   container: {
     display: 'flex',
     flexDirection: 'column',
   },
+  list: {
+    padding: 0,
+  },
 };
 
 const ItemsList = props => (
   <div className={props.classes.container}>
-    <List component="nav">
+    <List component="nav" className={props.classes.list}>
       {props.items.map(item => (
         <Item
           text={item.text}

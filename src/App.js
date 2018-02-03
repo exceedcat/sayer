@@ -4,11 +4,19 @@ import {
   Route,
   Switch,
 } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import MainPage from './page';
 import NewForm from './new';
 import CommentsPage from './comments-page';
 
 const lsKey = 'SayerItems';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: { main: '#313464' },
+    secondary: { main: '#d52f59' },
+  },
+});
 
 class App extends Component {
   constructor(props) {
@@ -56,6 +64,7 @@ class App extends Component {
 
   render() {
     return (
+      <MuiThemeProvider theme={theme}>
       <Router>
         <Switch>
           <Route
@@ -75,6 +84,7 @@ class App extends Component {
           />
         </Switch>
       </Router>
+      </MuiThemeProvider>
     );
   }
 }

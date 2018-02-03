@@ -31,9 +31,9 @@ const Header = (props) => {
     <AppBar position="static" className={classes.appBar}>
       <Toolbar className={classes.toolbar}>
         <Link to="/">
-        <Button fab mini color="primary" className={classes.button}>
-          <ArrowBackIcon />
-        </Button>
+          <Button fab mini color="primary" className={classes.button}>
+            <ArrowBackIcon />
+          </Button>
         </Link>
         <Typography type="title" color="inherit" className={classes.title}>
           {props.title}
