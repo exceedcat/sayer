@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Switch,
 } from 'react-router-dom';
 // import Header from './header';
 import ItemsList from './list';
@@ -33,9 +34,23 @@ class App extends Component {
     let item = {
       text: text,
       comments: [],
-      id: items[items.length-1].id + 1,
+      id: items.length ? items[items.length-1].id + 1 : 0,
     };
     const newItems = [...items, item];
+    this.setState({items: newItems});
+    this.save(newItems);
+  };
+
+  saveComments = (itemId, text) => {
+    const {items} = this.state;
+    const item = items.filter(i => i.id === itemId)[0];
+    const { comments } = item;
+    const comment = {
+      text,
+      id: comments.length ? comments[comments.length-1].id + 1 : 0,
+    };
+    const itemWithComment = {...item, comments: [...item.comments, comment]};
+    const newItems = items.map( i => i.id === itemId ? itemWithComment : i);
     this.setState({items: newItems});
     this.save(newItems);
   };
@@ -43,7 +58,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <Switch>
           <Route
             exact
             path="/"
@@ -57,9 +72,9 @@ class App extends Component {
           <Route
             exact
             path="/:itemId"
-            render={() => (<CommentsPage items={this.state.items} />)}
+            render={() => (<CommentsPage items={this.state.items} save={this.saveComments} />)}
           />
-        </div>
+        </Switch>
       </Router>
     );
   }
