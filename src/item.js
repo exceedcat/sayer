@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { withStyles } from 'material-ui/styles';
 import List, { ListItem, ListItemSecondaryAction } from 'material-ui/List';
 import Badge from 'material-ui/Badge';
@@ -54,13 +55,14 @@ class Item extends Component {
       comments: props.comments || 0,
       isDeleting: false,
       text: props.text,
+      id: props.id,
     };
   }
 
   render() {
     const { classes } = this.props;
     return (
-      <List component="nav" className={classes.p0}>
+      <Link to={`/${this.state.id}`}>
         <ListItem
           button
           divider
@@ -77,10 +79,10 @@ class Item extends Component {
           {this.state.comments > 0 && !this.state.isDeleting &&
             <Badge className={classes.badge} badgeContent={this.state.comments} color="primary" />}
           <ListItemSecondaryAction className={classes.secondary}>
-            {!this.state.isDeleting &&
+            {(!this.state.isDeleting &&
             <IconButton>
               <CloseIcon onClick={() => this.setState({ ...this.state, isDeleting: true })} />
-            </IconButton> ||
+            </IconButton>) ||
             <Button
               raised
               color="secondary"
@@ -92,7 +94,7 @@ class Item extends Component {
             }
           </ListItemSecondaryAction>
         </ListItem>
-      </List>
+      </Link>
     );
   }
 }

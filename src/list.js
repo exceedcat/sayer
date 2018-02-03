@@ -22,9 +22,10 @@ const ItemsList = props => (
       {props.items.map(item => (
         <Item
           text={item.text}
-          comments={item.comments}
+          comments={item.comments.length}
           isDeleting={item.isDeleting}
           key={item.id}
+          id={item.id}
           handleDelete={() => props.handleDelete(item.id)}
         />))
       }
