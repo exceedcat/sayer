@@ -13,26 +13,13 @@ const styles = {
     margin: '0 10px',
     marginLeft: 'auto',
   },
-  flex: {
+  text: {
     display: 'flex',
     justifyContent: 'space-between',
-  },
-  text: {
     fontFamily: 'Roboto, arial',
     color: 'rgba(0, 0, 0, 0.87)',
     textDecoration: 'none',
-  },
-  textPr50: {
-    fontFamily: 'Roboto, arial',
     paddingRight: '50px',
-    color: 'rgba(0, 0, 0, 0.87)',
-    textDecoration: 'none',
-  },
-  pr50: {
-    paddingRight: '50px',
-  },
-  pr100: {
-    paddingRight: '120px',
   },
   button: {
     boxShadow: 'none',
@@ -46,8 +33,9 @@ const styles = {
     right: 0,
     height: '100%',
   },
-  p0: {
-    padding: 0,
+  mw200: {
+    width: '100%',
+    maxWidth: 'calc(100vw - 100px)',
   },
 };
 
@@ -66,36 +54,37 @@ class Item extends Component {
     const { classes } = this.props;
     return (
       <ListItem
-        button
         divider
-        className={classes.flex && this.state.isDeleting ? classes.pr100 : classes.pr50}
+        className={classes.text}
+        component={Link}
+        to={`/${this.state.id}`}
       >
-        <Link to={`/${this.state.id}`} className={this.state.isDeleting ? classes.text : classes.textPr50}>
-          <LinesEllipsis
-            text={this.state.text}
-            maxLine="1"
-            ellipsis="..."
-            trimRight
-            basedOn="letters"
-          />
-        </Link>
+        <LinesEllipsis
+          text={this.state.text}
+          maxLine="1"
+          ellipsis="..."
+          trimRight
+          basedOn="words"
+          className={classes.mw200}
+        />
         {this.state.comments > 0 && !this.state.isDeleting &&
-        <Badge className={classes.badge} badgeContent={this.state.comments} color="primary" />}
+          <Badge className={classes.badge} badgeContent={this.state.comments} color="primary" />}
         <ListItemSecondaryAction className={classes.secondary}>
           {(!this.state.isDeleting &&
-            <IconButton>
-              <CloseIcon onClick={() => this.setState({ ...this.state, isDeleting: true })} />
-            </IconButton>) ||
-            <Button
-              raised
-              color="secondary"
-              className={classes.button}
-              onClick={this.props.handleDelete}
-            >
-              Delete
-            </Button>
-            }
+          <IconButton>
+            <CloseIcon onClick={() => this.setState({ ...this.state, isDeleting: true })} />
+          </IconButton>) ||
+          <Button
+            raised
+            color="secondary"
+            className={classes.button}
+            onClick={this.props.handleDelete}
+          >
+                Delete
+          </Button>
+          }
         </ListItemSecondaryAction>
+
       </ListItem>
 
     );
