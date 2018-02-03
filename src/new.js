@@ -4,6 +4,7 @@ import TextField from 'material-ui/TextField';
 import KeyboardArrowRightIcon from 'material-ui-icons/KeyboardArrowRight';
 import { Redirect } from 'react-router-dom';
 import Button from 'material-ui/Button';
+import Header from './header';
 
 const styles = {
   button: {
@@ -13,12 +14,11 @@ const styles = {
     },
   },
   container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    textAlign: 'center',
   },
   textField: {
     marginRight: '10px',
+    marginTop: '30px',
   },
 };
 
@@ -50,6 +50,7 @@ class NewForm extends Component {
     }
     return (
       <div className={classes.container}>
+        <Header title="Create new item" />
         <TextField
           required
           id="required"

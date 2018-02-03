@@ -12,11 +12,10 @@ const styles = {
     },
   },
   container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
+    textAlign: 'center',
     backgroundColor: '#eeeeee',
     padding: '10px 0',
+    margin: 'auto 0 0 0',
   },
   textFieldInput: {
     backgroundColor: '#ffffff',

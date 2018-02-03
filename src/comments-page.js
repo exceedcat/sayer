@@ -9,6 +9,8 @@ import CommentsForm from './comments-form';
 const styles = {
   container: {
     height: '100vh',
+    display: 'flex',
+    flexDirection: 'column',
   },
   toolbar: {
     display: 'flex',
@@ -20,7 +22,6 @@ const styles = {
     boxShadow: 'none',
   },
   comments: {
-    height: 'calc(100vh - 116px - 61px)',
     overflowY: 'scroll',
   },
 };
